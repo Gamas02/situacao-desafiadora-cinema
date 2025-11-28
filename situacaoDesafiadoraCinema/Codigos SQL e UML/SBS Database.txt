@@ -1,0 +1,73 @@
+
+CREATE DATABASE cinema;
+USE cinema;
+
+CREATE DATABASE cinema;
+USE cinema;
+
+
+CREATE TABLE Cliente (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    idade INT
+);
+
+
+CREATE TABLE Ingresso (
+    id_ingresso INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente INT NOT NULL,
+    assento VARCHAR(255),
+    filme VARCHAR(255),
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Sessao (
+    id_sessao INT PRIMARY KEY AUTO_INCREMENT,
+    id_ingresso INT NOT NULL,
+    horarioSessao DATETIME NOT NULL,
+    sala INT,
+    estado VARCHAR(255),
+    FOREIGN KEY (id_ingresso) REFERENCES Ingresso(id_ingresso)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+INSERT INTO Cliente (nome, idade) VALUES
+('Ana', 25),
+('Carlos', 33),
+('Marina', 19);
+
+
+
+INSERT INTO Ingresso (id_cliente, assento, filme) VALUES
+(1, 'A5', 'Vingadores'),
+(2, 'C3', 'Avatar'),
+(1, 'B10', 'Harry Potter');
+
+
+
+INSERT INTO Sessao (id_ingresso, horarioSessao, sala, estado) VALUES
+(1, '2025-01-15 20:00:00', 1, ENCERRADO),
+(1, '2025-01-15 22:00:00', 1, ENCERRADO),
+(2, '2025-01-16 18:00:00', 3, ENCERRADO);
+
+
+SELECT * FROM Cliente;
+SELECT * FROM Ingresso;
+SELECT * FROM Sessao;
+
+
+
+ALTER TABLE Sessao
+ADD estado VARCHAR(255);
+
+UPDATE Sessao
+SET estado = 'ENCERRADO'
+WHERE id_sessao = 1,
+WHERE id_sessao = 2,
+WHERE id_sessao = 3;
+
