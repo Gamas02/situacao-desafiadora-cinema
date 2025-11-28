@@ -30,6 +30,7 @@ CREATE TABLE Sessao (
     id_ingresso INT NOT NULL,
     horarioSessao DATETIME NOT NULL,
     sala INT,
+    estado VARCHAR(255),
     FOREIGN KEY (id_ingresso) REFERENCES Ingresso(id_ingresso)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -50,10 +51,10 @@ INSERT INTO Ingresso (id_cliente, assento, filme) VALUES
 
 ------------------------------------------------------
 
-INSERT INTO Sessao (id_ingresso, horarioSessao, sala) VALUES
-(1, '2025-01-15 20:00:00', 1),
-(1, '2025-01-15 22:00:00', 1),
-(2, '2025-01-16 18:00:00', 3);
+INSERT INTO Sessao (id_ingresso, horarioSessao, sala, estado) VALUES
+(1, '2025-01-15 20:00:00', 1, ENCERRADO),
+(1, '2025-01-15 22:00:00', 1, ENCERRADO),
+(2, '2025-01-16 18:00:00', 3, ENCERRADO);
 
 ------------------------------------------------------
 
